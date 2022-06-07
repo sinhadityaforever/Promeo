@@ -7,7 +7,6 @@ import endpoints from './endpoints.config';
 import postRoutes from './routes/posts';
 const app = express();
 
-app.use('/posts', postRoutes);
 app.use(
 	bodyParser.json({
 		limit: '30mb'
@@ -20,7 +19,7 @@ app.use(
 	})
 );
 app.use(cors());
-
+app.use('/posts', postRoutes);
 mongoose
 	.connect(endpoints.dbConnectionUrl, {
 		useNewUrlParser: true,
