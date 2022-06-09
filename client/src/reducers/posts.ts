@@ -10,6 +10,10 @@ export const posts = (posts = [], action: any) => {
 				//@ts-ignore
 				post._id === action.payload._id ? action.payload : post
 			);
+
+		case 'DELETE':
+			//@ts-ignore
+			return posts.filter((post) => post._id !== action.payload);
 		default:
 			return posts;
 	}

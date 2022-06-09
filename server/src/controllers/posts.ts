@@ -39,3 +39,32 @@ export const updatePost = async (req: any, res: any) => {
 		return res.status(404).send('No post with that id');
 	}
 };
+
+export const deletePost = async (req: any, res: any) => {
+	const { id } = req.params;
+	try {
+		await PostMessage.findByIdAndRemove(id);
+		return res.json({ message: 'Post Deleted successfully' });
+	} catch (error) {
+		console.log(error);
+		return res.status(404).send('No post with that id');
+	}
+};
+
+export const likePost = async (req: any, res: any) => {
+	const { id } = req.params;
+	try {
+		const post = await PostMessage.findById(id);
+		const updatedPost = await PostMessage.findByIdAndUpdate(
+			id,
+			{
+				likeCount: post.likeCount + 1
+			},
+			{ new: true }
+		);
+		res.json(updatedPost);
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({ message: 'Failed' });
+	}
+};
