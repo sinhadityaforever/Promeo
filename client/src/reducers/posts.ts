@@ -1,17 +1,19 @@
+import { actionTypes } from '../constants/actionTypes';
 export const posts = (posts = [], action: any) => {
 	switch (action.type) {
-		case 'FETCH_ALL':
+		case actionTypes.FETCH_ALL:
 			return action.payload;
-		case 'CREATE':
+		case actionTypes.CREATE:
 			return [...posts, action.payload];
 
-		case 'UPDATE':
+		case actionTypes.UPDATE:
+		case actionTypes.LIKE:
 			return posts.map((post) =>
 				//@ts-ignore
 				post._id === action.payload._id ? action.payload : post
 			);
 
-		case 'DELETE':
+		case actionTypes.DELETE:
 			//@ts-ignore
 			return posts.filter((post) => post._id !== action.payload);
 		default:
