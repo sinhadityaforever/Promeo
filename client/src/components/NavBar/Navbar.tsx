@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './styles';
@@ -6,12 +7,13 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
 	const classes = useStyles();
-	const user: any = {
-		result: {
-			name: 'Test',
-			imageUrl: ''
-		}
-	};
+	// const user: any = {
+	// 	result: {
+	// 		name: 'Test',
+	// 		imageUrl: ''
+	// 	}
+	// };
+	const user = undefined;
 	return (
 		<AppBar className={classes.appBar} position="static" color="inherit">
 			<div className={classes.brandContainer}>
