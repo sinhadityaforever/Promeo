@@ -7,17 +7,30 @@ import {
 	TextField,
 	Typography
 } from '@material-ui/core';
+import Icon from './icon';
+import { GoogleLogin } from 'react-google-login';
 import React, { useState } from 'react';
 import useStyles from './styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 function Auth() {
 	const classes = useStyles();
-	const isSignup = false;
+	const [isSignup, setIsSignup] = useState(false);
+
 	const handleSubmit = () => {};
 	const handleChange = () => {};
 	const handleShowPassword = () => {
 		setShowPassword((prevShowPassword: any) => !prevShowPassword);
+	};
+	const switchMode = () => {
+		setIsSignup((prevIsSignup: any) => !prevIsSignup);
+	};
+	const googleSuccess = async (res: any) => {
+		console.log(res);
+	};
+	const googleFailure = (error: any) => {
+		console.log('Google Sign In was unsuccessful');
+		console.log(error);
 	};
 	const [showPassword, setShowPassword] = useState(false);
 	return (
@@ -81,6 +94,7 @@ function Auth() {
 							/>
 						)}
 					</Grid>
+
 					<Button
 						type="submit"
 						fullWidth
@@ -90,6 +104,34 @@ function Auth() {
 					>
 						{isSignup ? 'Sign Up' : 'Sign In'}
 					</Button>
+					<GoogleLogin
+						clientId="394066954914-7f8f39kd3a7rmdm1jbsbd0qprjj6fnc0.apps.googleusercontent.com"
+						render={(renderProps) => (
+							<Button
+								className={classes.googleButton}
+								color="primary"
+								fullWidth
+								onClick={renderProps.onClick}
+								disabled={renderProps.disabled}
+								startIcon={<Icon />}
+								variant="contained"
+							>
+								Google Sign In
+							</Button>
+						)}
+						onSuccess={googleSuccess}
+						onFailure={googleFailure}
+						cookiePolicy="single_host_origin"
+					/>
+					<Grid container justify="flex-end">
+						<Grid item>
+							<Button onClick={switchMode}>
+								{isSignup
+									? 'Already have an account? Sign In'
+									: "Don't have an account? Sign Up"}
+							</Button>
+						</Grid>
+					</Grid>
 				</form>
 			</Paper>
 		</Container>
