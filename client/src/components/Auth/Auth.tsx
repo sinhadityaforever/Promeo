@@ -13,12 +13,30 @@ import React, { useState } from 'react';
 import useStyles from './styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 function Auth() {
+	const initialState = {
+		firstName: '',
+		lastName: '',
+		email: '',
+		password: '',
+		confirmPassword: ''
+	};
+	const history = useHistory();
+	const dispatch = useDispatch();
 	const classes = useStyles();
 	const [isSignup, setIsSignup] = useState(false);
-
-	const handleSubmit = () => {};
-	const handleChange = () => {};
+	const [formData, setFormData] = useState(initialState);
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+		if (isSignup) {
+		} else {
+		}
+	};
+	const handleChange = (e: any) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
 	const handleShowPassword = () => {
 		setShowPassword((prevShowPassword: any) => !prevShowPassword);
 	};
@@ -26,7 +44,12 @@ function Auth() {
 		setIsSignup((prevIsSignup: any) => !prevIsSignup);
 	};
 	const googleSuccess = async (res: any) => {
-		console.log(res);
+		const result = res?.profileObj;
+		const token = res?.tokenId;
+		try {
+			dispatch({ type: 'AUTH', data: { result, token } });
+			history.push('/');
+		} catch (error) {}
 	};
 	const googleFailure = (error: any) => {
 		console.log('Google Sign In was unsuccessful');

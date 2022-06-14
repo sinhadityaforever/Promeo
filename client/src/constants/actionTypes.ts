@@ -3,5 +3,7 @@ export const actionTypes = {
 	UPDATE: 'UPDATE',
 	DELETE: 'DELETE',
 	FETCH_ALL: 'FETCH_ALL',
-	LIKE: 'LIKE'
+	LIKE: 'LIKE',
+	AUTH: 'AUTH',
+	LOGOUT: 'LOGOUT'
 };
