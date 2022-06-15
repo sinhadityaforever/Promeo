@@ -15,6 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { signin, signup } from '../../actions/auth';
 function Auth() {
 	const initialState = {
 		firstName: '',
@@ -31,7 +32,9 @@ function Auth() {
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
 		if (isSignup) {
+			dispatch(signup(formData, history));
 		} else {
+			dispatch(signin(formData, history));
 		}
 	};
 	const handleChange = (e: any) => {
@@ -127,7 +130,7 @@ function Auth() {
 					>
 						{isSignup ? 'Sign Up' : 'Sign In'}
 					</Button>
-					<GoogleLogin
+					{/* <GoogleLogin
 						clientId="394066954914-7f8f39kd3a7rmdm1jbsbd0qprjj6fnc0.apps.googleusercontent.com"
 						render={(renderProps) => (
 							<Button
@@ -145,7 +148,7 @@ function Auth() {
 						onSuccess={googleSuccess}
 						onFailure={googleFailure}
 						cookiePolicy="single_host_origin"
-					/>
+					/> */}
 					<Grid container justify="flex-end">
 						<Grid item>
 							<Button onClick={switchMode}>

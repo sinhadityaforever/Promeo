@@ -32,7 +32,7 @@ export const signup = async (req: any, res: any) => {
 	const { email, password, firstName, lastName, confirmPassword } = req.body;
 	try {
 		const existingUser = await User.findOne({ email });
-		if (!existingUser) {
+		if (existingUser) {
 			return res.status(400).json({ message: 'User already exist' });
 		}
 		if (password !== confirmPassword) {
@@ -55,5 +55,6 @@ export const signup = async (req: any, res: any) => {
 		return res.status(200).json({ result, token });
 	} catch (error) {
 		res.status(400).json({ message: 'Something went wrong' });
+		console.log(error);
 	}
 };

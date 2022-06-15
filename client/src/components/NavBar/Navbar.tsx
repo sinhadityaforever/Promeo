@@ -14,7 +14,7 @@ function Navbar() {
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 	const logout = () => {
 		dispatch({ type: 'LOGOUT' });
-		history.pushState('/');
+		history.push('/');
 		setUser(null);
 	};
 	useEffect(() => {

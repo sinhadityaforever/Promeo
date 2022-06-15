@@ -63,7 +63,7 @@ function Post({ post, setCurrentId }) {
 					}}
 				>
 					<ThumbUpAltIcon fontSize="small"></ThumbUpAltIcon>
-					&nbsp;Like&nbsp; {post.likeCount}
+					&nbsp;Like&nbsp; {post.likes.length}
 				</Button>
 				<Button
 					size="small"

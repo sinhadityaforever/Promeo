@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts';
 //@ts-ignore
 function Form({ currentId, setCurrentId }) {
+	//@ts-ignore
+	const user = JSON.parse(localStorage.getItem('profile'));
 	const dispatch = useDispatch();
 	const [postData, setPostData] = useState({
-		creator: '',
 		title: '',
 		message: '',
 		tags: '',
@@ -26,16 +27,15 @@ function Form({ currentId, setCurrentId }) {
 	const handleSubmit = (e: any) => {
 		e.preventDefault();
 		if (currentId) {
-			dispatch(updatePost(currentId, postData));
+			dispatch(updatePost(currentId, { ...postData, name: user?.result.name }));
 		} else {
-			dispatch(createPost(postData));
+			dispatch(createPost({ ...postData, name: user?.result.name }));
 		}
 		clear();
 	};
 	const clear = () => {
 		setCurrentId(null);
 		setPostData({
-			creator: '',
 			title: '',
 			message: '',
 			tags: '',
@@ -53,7 +53,7 @@ function Form({ currentId, setCurrentId }) {
 				<Typography variant="h6">
 					{currentId ? 'Editing' : 'Creating'} a Memory
 				</Typography>
-				<TextField
+				{/* <TextField
 					name="creator"
 					variant="outlined"
 					label="Creator"
@@ -62,7 +62,7 @@ function Form({ currentId, setCurrentId }) {
 					onChange={(e) => {
 						setPostData({ ...postData, creator: e.target.value });
 					}}
-				/>
+				/> */}
 				<TextField
 					name="title"
 					variant="outlined"
