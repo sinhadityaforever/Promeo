@@ -42,6 +42,16 @@ function Form({ currentId, setCurrentId }) {
 			selectedFile: ''
 		});
 	};
+
+	if (!user?.result?.name) {
+		return (
+			<Paper className={classes.paper}>
+				<Typography variant="h6" align="center">
+					Please Sign in to create post or like something.
+				</Typography>
+			</Paper>
+		);
+	}
 	return (
 		<Paper className={classes.paper}>
 			<form
