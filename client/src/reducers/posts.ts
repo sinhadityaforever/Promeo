@@ -1,22 +1,44 @@
 import { actionTypes } from '../constants/actionTypes';
-export const posts = (posts = [], action: any) => {
+export const posts: any = (
+	state = { isLoading: true, posts: [] },
+	action: any
+) => {
 	switch (action.type) {
-		case actionTypes.FETCH_ALL:
-			return action.payload;
-		case actionTypes.CREATE:
-			return [...posts, action.payload];
+		case actionTypes.START_LOADING:
+			return { ...state, isLoading: true };
+		case actionTypes.END_LOADING:
+			return { ...state, isLoading: false };
 
+		case actionTypes.FETCH_ALL:
+			return {
+				...state,
+				posts: action.payload.data,
+				currentPage: action.payload.currentPage,
+				numberOfPages: action.payload.numberOfPages
+			};
+
+		case actionTypes.FETCH_BY_SEARCH:
+			return { ...state, posts: action.payload };
+
+		case actionTypes.CREATE:
+			return { ...state, posts: [...state.posts, action.payload] };
 		case actionTypes.UPDATE:
 		case actionTypes.LIKE:
-			return posts.map((post) =>
-				//@ts-ignore
-				post._id === action.payload._id ? action.payload : post
-			);
+			return {
+				...state,
+				posts: state.posts.map((post) =>
+					//@ts-ignore
+					post._id === action.payload._id ? action.payload : post
+				)
+			};
 
 		case actionTypes.DELETE:
-			//@ts-ignore
-			return posts.filter((post) => post._id !== action.payload);
+			return {
+				...state,
+				//@ts-ignore
+				posts: state.posts.filter((post) => post._id !== action.payload)
+			};
 		default:
-			return posts;
+			return state;
 	}
 };

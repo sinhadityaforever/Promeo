@@ -29,9 +29,9 @@ function Home() {
 	const searchQuery = query.get('searchQuery');
 	const [search, setSearch] = useState('');
 	const [tags, setTags] = useState([]);
-	useEffect(() => {
-		dispatch(getPosts());
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	dispatch(getPosts());
+	// }, [dispatch]);
 	const handleKeyPress = (e: any) => {
 		if (e.keyCode === 13) {
 			searchPost();
@@ -104,9 +104,11 @@ function Home() {
 							</Button>
 						</AppBar>
 						<Form currentId={currentId} setCurrentId={setCurrentId} />
-						<Paper className={classes.pagination} elevation={6}>
-							<Paginate></Paginate>
-						</Paper>
+						{!searchQuery && !tags.length && (
+							<Paper className={classes.pagination} elevation={6}>
+								<Paginate page={page}></Paginate>
+							</Paper>
+						)}
 					</Grid>
 				</Grid>
 			</Container>

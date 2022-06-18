@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './styles';
-import memories from '../../images/memories.png';
+import logo from '../../images/logo.png';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -30,7 +30,11 @@ function Navbar() {
 	}, [location]);
 	return (
 		<AppBar className={classes.appBar} position="static" color="inherit">
-			<div className={classes.brandContainer}>
+			<Link
+				style={{ textDecoration: 'none' }}
+				to="/"
+				className={classes.brandContainer}
+			>
 				<Typography
 					component={Link}
 					to="/"
@@ -40,8 +44,8 @@ function Navbar() {
 				>
 					Promeo
 				</Typography>
-				<img className={classes.image} src={memories} alt="icon" height="60" />
-			</div>
+				<img className={classes.image} src={logo} alt="icon" height="40" />
+			</Link>
 			<Toolbar className={classes.toolbar}>
 				{user ? (
 					<div className={classes.profile}>

@@ -1,10 +1,14 @@
 import * as api from '../api/index';
 import { actionTypes } from '../constants/actionTypes';
 
-export const getPosts = () => async (dispatch: any) => {
+export const getPosts = (page: any) => async (dispatch: any) => {
 	try {
-		const { data } = await api.fetchPosts();
+		dispatch({ type: actionTypes.START_LOADING });
+		const { data } = await api.fetchPosts(page);
+		console.log(data);
+
 		dispatch({ type: actionTypes.FETCH_ALL, payload: data });
+		dispatch({ type: actionTypes.END_LOADING });
 	} catch (error) {
 		console.log(error);
 	}
@@ -12,9 +16,12 @@ export const getPosts = () => async (dispatch: any) => {
 
 export const getPostsBySearch = (searchQuery: any) => async (dispatch: any) => {
 	try {
+		dispatch({ type: actionTypes.START_LOADING });
 		const {
 			data: { data }
 		} = await api.fetchPostsBySearch(searchQuery);
+		dispatch({ type: actionTypes.FETCH_BY_SEARCH, payload: data });
+		dispatch({ type: actionTypes.END_LOADING });
 		console.log(data);
 	} catch (error) {
 		console.log(error);
