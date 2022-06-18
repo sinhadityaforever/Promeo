@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
 import useStyles from './styles';
 import logo from '../../images/logo.png';
+import textlogo from '../../images/textlogo.png';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -35,7 +36,7 @@ function Navbar() {
 				to="/"
 				className={classes.brandContainer}
 			>
-				<Typography
+				{/* <Typography
 					component={Link}
 					to="/"
 					className={classes.heading}
@@ -43,7 +44,13 @@ function Navbar() {
 					align="center"
 				>
 					Promeo
-				</Typography>
+				</Typography> */}
+				<img
+					src={textlogo}
+					alt="Text Logo"
+					height="35"
+					className={classes.image}
+				></img>
 				<img className={classes.image} src={logo} alt="icon" height="40" />
 			</Link>
 			<Toolbar className={classes.toolbar}>
