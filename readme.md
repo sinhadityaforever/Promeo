@@ -1,4 +1,4 @@
-![Logo](https://i.postimg.cc/wT9TdYMx/logo.png)
+![Logo](https://i.postimg.cc/PqgsJwjH/Screenshot-2022-06-20-233648.jpg)
 
 # Promeo
 
@@ -22,7 +22,3 @@ A minimal full-stack web-app, to store and show new places that a user visits.
 ## Live Site
 
 www.promeo.vercel.app
-
-## Screenshots
-
-![App Screenshot](https://i.postimg.cc/PqgsJwjH/Screenshot-2022-06-20-233648.jpg)
