@@ -96,7 +96,7 @@ function Postdetails() {
 						You might also like:
 					</Typography>
 					<Divider>
-						<div className={classes.recommendedPosts}>
+						{/* <div className={classes.recommendedPosts}>
 							{recommendedPosts.map(
 								// @ts-ignore
 								({ title, message, name, likes, selectedFile, _id }) => (
@@ -121,7 +121,7 @@ function Postdetails() {
 									</div>
 								)
 							)}
-						</div>
+						</div> */}
 					</Divider>
 				</div>
 			)}
