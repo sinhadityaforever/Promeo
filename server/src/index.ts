@@ -6,6 +6,7 @@ const cors = require('cors');
 import endpoints from './endpoints.config';
 import postRoutes from './routes/posts';
 import userRoutes from './routes/users';
+import testRoutes from './routes/test';
 const app = express();
 
 app.use(
@@ -22,6 +23,7 @@ app.use(
 app.use(cors());
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
+app.use('/test', testRoutes);
 mongoose
 	.connect(endpoints.dbConnectionUrl, {
 		useNewUrlParser: true,
