@@ -8,14 +8,14 @@ export const signin = async (req: any, res: any) => {
 	try {
 		const existingUser = await User.findOne({ email });
 		if (!existingUser) {
-			return res.status(404).json({ message: 'Something went wrong!' });
+			return res.status(404).json({ message: 'Something went wrong! Code 3' });
 		}
 		const isPasswordCorrect = await bcrypt.compare(
 			password,
 			existingUser.password
 		);
 		if (!isPasswordCorrect) {
-			return res.status(400).json({ message: 'Something went wrong' });
+			return res.status(400).json({ message: 'Something went wrong. Code 2' });
 		}
 		const token = jwt.sign(
 			{ email: existingUser.email, id: existingUser._id },
@@ -24,7 +24,7 @@ export const signin = async (req: any, res: any) => {
 		);
 		return res.status(200).json({ result: existingUser, token });
 	} catch (error) {
-		res.status(400).json({ message: 'Something went wrong' });
+		res.status(400).json({ message: 'Something went wrong. Code 1', error });
 	}
 };
 
