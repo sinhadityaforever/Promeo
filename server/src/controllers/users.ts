@@ -23,8 +23,15 @@ export const signin = async (req: any, res: any) => {
 			{ expiresIn: '1h' }
 		);
 		return res.status(200).json({ result: existingUser, token });
-	} catch (error) {
-		res.status(400).json({ message: 'Something went wrong. Code 1', error });
+	} catch (error: any) {
+		res
+			.status(400)
+			.json({
+				message: 'Something went wrong. Code 1',
+				email,
+				password,
+				error: JSON.stringify(error.message)
+			});
 	}
 };
 
