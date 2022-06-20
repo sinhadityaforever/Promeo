@@ -14,6 +14,19 @@ export const getPosts = (page: any) => async (dispatch: any) => {
 	}
 };
 
+export const getPost = (id: any) => async (dispatch: any) => {
+	try {
+		dispatch({ type: actionTypes.START_LOADING });
+		const { data } = await api.fetchPost(id);
+		console.log(data);
+
+		dispatch({ type: actionTypes.FETCH_POST, payload: data });
+		dispatch({ type: actionTypes.END_LOADING });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export const getPostsBySearch = (searchQuery: any) => async (dispatch: any) => {
 	try {
 		dispatch({ type: actionTypes.START_LOADING });

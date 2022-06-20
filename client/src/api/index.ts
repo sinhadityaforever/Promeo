@@ -10,7 +10,7 @@ API.interceptors.request.use((req: any) => {
 	}
 	return req;
 });
-
+export const fetchPost = (id: any) => API.get(`/posts/single/${id}`);
 export const fetchPosts = (page: any) => API.get(`/posts?page=${page}`);
 export const fetchPostsBySearch = (searchQuery: any) =>
 	API.get(

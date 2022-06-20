@@ -19,6 +19,8 @@ export const posts: any = (
 
 		case actionTypes.FETCH_BY_SEARCH:
 			return { ...state, posts: action.payload };
+		case actionTypes.FETCH_POST:
+			return { ...state, post: action.payload };
 
 		case actionTypes.CREATE:
 			return { ...state, posts: [...state.posts, action.payload] };

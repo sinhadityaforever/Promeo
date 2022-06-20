@@ -6,7 +6,8 @@ import {
 	CardContent,
 	CardMedia,
 	Button,
-	Typography
+	Typography,
+	ButtonBase
 } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -15,12 +16,17 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts';
 import { ThumbUpAltOutlined } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 //@ts-ignore
 function Post({ post, setCurrentId }) {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	//@ts-ignore
 	const user = JSON.parse(localStorage.getItem('profile'));
 	const classes = useStyles();
+	const openPost = () => {
+		history.push(`/posts/${post._id}`);
+	};
 	const Likes = () => {
 		if (post.likes.length > 0) {
 			return post.likes.find(
@@ -50,7 +56,9 @@ function Post({ post, setCurrentId }) {
 	};
 	return (
 		<Card className={classes.card} raised elevation={6}>
+			{/* <ButtonBase className={classes.cardActions} onClick={openPost}> */}
 			<CardMedia
+				onClick={openPost}
 				className={classes.media}
 				image={post.selectedFile}
 				title={post.title}
@@ -86,6 +94,7 @@ function Post({ post, setCurrentId }) {
 					{post.message}
 				</Typography>
 			</CardContent>
+			{/* </ButtonBase> */}
 			<CardActions>
 				<Button
 					size="small"

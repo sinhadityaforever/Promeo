@@ -11,13 +11,11 @@ export const getPosts = async (req: any, res: any) => {
 			.sort({ _id: -1 })
 			.limit(LIMIT)
 			.skip(startIndex);
-		res
-			.status(200)
-			.json({
-				data: posts,
-				currentPage: Number(page),
-				numberOfPages: Math.ceil(total / LIMIT)
-			});
+		res.status(200).json({
+			data: posts,
+			currentPage: Number(page),
+			numberOfPages: Math.ceil(total / LIMIT)
+		});
 	} catch (error: any) {
 		res.status(400).json({
 			message: error.message
@@ -25,8 +23,25 @@ export const getPosts = async (req: any, res: any) => {
 	}
 };
 
+export const getPost = async (req: any, res: any) => {
+	console.log('endpoint hit');
+
+	const { id } = req.params;
+	try {
+		const post = await PostMessage.findById(id);
+		res.status(200).json(post);
+	} catch (error) {
+		console.log(error);
+		res.status(404).json({ message: 'Problem loading post' });
+	}
+};
+
 export const getPostsBySearch = async (req: any, res: any) => {
+	console.log('endPoint hit');
+
 	const { searchQuery, tags } = req.query;
+	console.log(`searchQuery: ${searchQuery} and tags: ${tags}`);
+
 	try {
 		const title = new RegExp(searchQuery, 'i');
 		const posts = await PostMessage.find({
@@ -34,6 +49,8 @@ export const getPostsBySearch = async (req: any, res: any) => {
 		});
 		res.json({ data: posts });
 	} catch (error) {
+		console.log('error hit');
+
 		console.log(error);
 		res.status(404).json({ message: error });
 	}

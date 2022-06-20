@@ -18,7 +18,7 @@ function Form({ currentId, setCurrentId }) {
 
 	const selectedPost = useSelector((state) =>
 		//@ts-ignore
-		currentId ? state.posts.find((p) => p._id === currentId) : null
+		currentId ? state.posts.posts.find((p) => p._id === currentId) : null
 	);
 	useEffect(() => {
 		if (selectedPost) setPostData(selectedPost);
