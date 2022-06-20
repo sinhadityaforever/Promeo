@@ -90,13 +90,13 @@ function Postdetails() {
 					/>
 				</div>
 			</div>
-			{recommendedPosts.length && (
+			{/* {recommendedPosts.length && (
 				<div className={classes.section}>
 					<Typography gutterBottom variant="h5">
 						You might also like:
 					</Typography>
-					<Divider>
-						{/* <div className={classes.recommendedPosts}>
+					<Divider/>
+						<div className={classes.recommendedPosts}>
 							{recommendedPosts.map(
 								// @ts-ignore
 								({ title, message, name, likes, selectedFile, _id }) => (
@@ -121,10 +121,10 @@ function Postdetails() {
 									</div>
 								)
 							)}
-						</div> */}
-					</Divider>
+						</div>
+					<Divider/>
 				</div>
-			)}
+			)} */}
 		</Paper>
 	);
 }
