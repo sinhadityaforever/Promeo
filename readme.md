@@ -21,4 +21,4 @@ A minimal full-stack web-app, to store and show new places that a user visits.
 
 ## Live Site
 
-https://www.promeo.vercel.app
+https://promeo.vercel.app
