@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API = axios.create({ baseURL: 'https://promeo.herokuapp.com/' });
+const API = axios.create({ baseURL: 'https://promeo-production.up.railway.app/' });
 
 API.interceptors.request.use((req: any) => {
 	if (localStorage.getItem('profile')) {
